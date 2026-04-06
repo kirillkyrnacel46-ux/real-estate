@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭлитРиэлт — Недвижимость Москвы и Санкт-Петербурга</title>
+    <meta name="description" content="Продажа и аренда элитной недвижимости в Москве и Санкт-Петербурге. Тысячи объектов, ипотечный калькулятор, прозрачные сделки.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="mainHeader">
+    <div class="header-top">
+        <div class="container hdr-inner">
+            <a href="#" class="logo" id="logoHome">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#D93025"/><path d="M8 22L12 10h2l4 9 4-9h2l4 12h-2.5l-2.5-7.5L19 22h-1.5l-3.5-7.5L11 22H8Z" fill="white" font-size="10"/><path d="M8 22L12 10h2l2 5-1.5 3L11 22H8Zm8 0l2-5.5 2 5.5h-4Zm4-12h2l4 12h-2.5l-3.5-10.5V10Z" fill="white"/></svg>
+                ЭлитРиэлт
+            </a>
+            <nav class="header-nav">
+                <a href="#" class="nav-link active" data-page="home">Главная</a>
+                <a href="#" class="nav-link" data-page="catalog">Каталог</a>
+                <a href="#" class="nav-link" data-page="mortgage">Ипотека</a>
+                <a href="#" class="nav-link" data-page="districts">Районы</a>
+                <a href="#" class="nav-link" data-page="about">О нас</a>
+            </nav>
+            <div class="hdr-right">
+                <button class="btn-fav" id="favBtn" title="Избранное">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    Избранное <span class="fav-count" id="favCount">0</span>
+                </button>
+                <button class="btn-primary-sm" id="postAdBtn">+ Разместить объявление</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- СТРАНИЦА: ГЛАВНАЯ -->
+<div id="page-home" class="page active">
+    <!-- HERO SEARCH -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="container hero-inner">
+            <h1 class="hero-title">Найдите свой идеальный дом</h1>
+            <p class="hero-sub">Более 15 000 объектов в Москве и Санкт-Петербурге</p>
+            <div class="search-box">
+                <div class="search-tabs">
+                    <button class="s-tab active" data-type="buy">Купить</button>
+                    <button class="s-tab" data-type="rent">Снять</button>
+                    <button class="s-tab" data-type="new">Новостройки</button>
+                </div>
+                <div class="search-controls">
+                    <div class="s-group">
+                        <label>Город</label>
+                        <select id="heroCity">
+                            <option>Москва</option>
+                            <option>Санкт-Петербург</option>
+                        </select>
+                    </div>
+                    <div class="s-group">
+                        <label>Тип жилья</label>
+                        <select id="heroType">
+                            <option>Квартира</option>
+                            <option>Апартаменты</option>
+                            <option>Дом/Коттедж</option>
+                            <option>Таунхаус</option>
+                            <option>Пентхаус</option>
+                        </select>
+                    </div>
+                    <div class="s-group">
+                        <label>Комнатность</label>
+                        <div class="room-picker">
+                            <button class="room-btn active" data-rooms="any">Любая</button>
+                            <button class="room-btn" data-rooms="1">1</button>
+                            <button class="room-btn" data-rooms="2">2</button>
+                            <button class="room-btn" data-rooms="3">3</button>
+                            <button class="room-btn" data-rooms="4">4+</button>
+                        </div>
+                    </div>
+                    <div class="s-group">
+                        <label>Цена до (₽)</label>
+                        <input type="number" id="heroPrice" placeholder="Без ограничений" step="1000000">
+                    </div>
+                    <button class="btn-search" id="heroSearchBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        Найти
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТАТИСТИКА -->
+    <section class="stats-bar">
+        <div class="container stats-inner">
+            <div class="stat-item"><strong>15 842</strong><span>Объектов</span></div>
+            <div class="stat-item"><strong>8 районов</strong><span>Москва + СПб</span></div>
+            <div class="stat-item"><strong>12 лет</strong><span>На рынке</span></div>
+            <div class="stat-item"><strong>3 200+</strong><span>Успешных сделок</span></div>
+        </div>
+    </section>
+
+    <!-- ГОРЯЧИЕ ПРЕДЛОЖЕНИЯ -->
+    <section class="section hot-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Горячие предложения</h2>
+                <a href="#" class="link-more" data-page-nav="catalog">Смотреть все →</a>
+            </div>
+            <div class="cards-grid" id="hotCardsGrid"></div>
+        </div>
+    </section>
+
+    <!-- РАЙОНЫ -->
+    <section class="section districts-section">
+        <div class="container">
+            <h2>Популярные районы</h2>
+            <div class="districts-grid" id="districtsHomeGrid"></div>
+        </div>
+    </section>
+
+    <!-- ИПОТЕКА БАННЕР -->
+    <section class="mortgage-banner">
+        <div class="container mb-inner">
+            <div class="mb-text">
+                <h2>Выгодная ипотека от 4.9% годовых</h2>
+                <p>Рассчитайте ежемесячный платёж за 1 минуту — без посещения банка</p>
+                <button class="btn-primary" data-page-nav="mortgage">Рассчитать ипотеку</button>
+            </div>
+            <div class="mb-visual">
+                <div class="mb-card">
+                    <div class="mb-stat">4.9%</div>
+                    <div class="mb-label">Ставка от</div>
+                </div>
+                <div class="mb-card">
+                    <div class="mb-stat">30 лет</div>
+                    <div class="mb-label">Срок до</div>
+                </div>
+                <div class="mb-card">
+                    <div class="mb-stat">10%</div>
+                    <div class="mb-label">Первый взнос</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВОСТРОЙКИ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Новостройки</h2>
+                <a href="#" class="link-more" data-page-nav="catalog">Все новостройки →</a>
+            </div>
+            <div class="newbuilds-grid" id="newbuildsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="section reviews-section">
+        <div class="container">
+            <h2>Отзывы клиентов</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p>"Купили квартиру на Крестовском острове, всё прошло идеально. Агент Дмитрий помог с ипотекой и провёл полное юридическое сопровождение."</p>
+                    <div class="review-author"><strong>Александр К.</strong><span>Санкт-Петербург</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p>"Очень быстро подобрали варианты в Патриарших прудах под наш бюджет. Три просмотра и через месяц мы въехали в новую квартиру!"</p>
+                    <div class="review-author"><strong>Елена и Сергей В.</strong><span>Москва</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★☆</div>
+                    <p>"Профессиональный подход, прозрачные условия. Никаких скрытых платежей. Уже второй раз обращаюсь — и снова доволен."</p>
+                    <div class="review-author"><strong>Михаил Д.</strong><span>Москва</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- СТРАНИЦА: КАТАЛОГ -->
+<div id="page-catalog" class="page">
+    <div class="catalog-layout">
+        <!-- Боковые фильтры -->
+        <aside class="filters-panel" id="filtersPanel">
+            <div class="filters-header">
+                <h3>Фильтры</h3>
+                <button class="filters-reset" id="resetFilters">Сбросить всё</button>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Тип сделки</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="deal" value="buy" checked> Купить</label>
+                    <label><input type="radio" name="deal" value="rent"> Снять</label>
+                    <label><input type="radio" name="deal" value="new"> Новостройки</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Город</label>
+                <select class="filter-select" id="filterCity">
+                    <option value="all">Все города</option>
+                    <option value="moscow">Москва</option>
+                    <option value="spb">Санкт-Петербург</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Район</label>
+                <select class="filter-select" id="filterDistrict">
+                    <option value="all">Все районы</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Тип жилья</label>
+                <select class="filter-select" id="filterPropertyType">
+                    <option value="all">Все типы</option>
+                    <option value="apartment">Квартира</option>
+                    <option value="apartments">Апартаменты</option>
+                    <option value="penthouse">Пентхаус</option>
+                    <option value="house">Дом/Коттедж</option>
+                    <option value="townhouse">Таунхаус</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Комнатность</label>
+                <div class="room-filter-btns" id="roomFilterBtns">
+                    <button class="rf-btn active" data-r="all">Любая</button>
+                    <button class="rf-btn" data-r="1">1</button>
+                    <button class="rf-btn" data-r="2">2</button>
+                    <button class="rf-btn" data-r="3">3</button>
+                    <button class="rf-btn" data-r="4">4+</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Цена, ₽</label>
+                <div class="range-inputs">
+                    <input type="number" class="range-input" id="priceMin" placeholder="от" step="1000000">
+                    <span>–</span>
+                    <input type="number" class="range-input" id="priceMax" placeholder="до" step="1000000">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Площадь, м²</label>
+                <div class="range-inputs">
+                    <input type="number" class="range-input" id="areaMin" placeholder="от">
+                    <span>–</span>
+                    <input type="number" class="range-input" id="areaMax" placeholder="до">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Этаж</label>
+                <div class="range-inputs">
+                    <input type="number" class="range-input" id="floorMin" placeholder="от" min="1">
+                    <span>–</span>
+                    <input type="number" class="range-input" id="floorMax" placeholder="до" min="1">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Дополнительно</label>
+                <div class="checkbox-list">
+                    <label><input type="checkbox" id="fHasParking"> Есть парковка</label>
+                    <label><input type="checkbox" id="fHasTerrace"> Терраса/балкон</label>
+                    <label><input type="checkbox" id="fNearMetro"> До метро &lt;10 мин</label>
+                    <label><input type="checkbox" id="fGated"> Закрытая территория</label>
+                </div>
+            </div>
+
+            <button class="btn-apply-filters" id="applyFilters">Показать объекты</button>
+        </aside>
+
+        <!-- Результаты -->
+        <div class="catalog-main">
+            <div class="catalog-toolbar">
+                <div class="catalog-count" id="catalogCount">Загрузка...</div>
+                <div class="catalog-sort">
+                    <label>Сортировка:</label>
+                    <select id="sortSelect">
+                        <option value="date">По дате</option>
+                        <option value="price-asc">Цена: по возрастанию</option>
+                        <option value="price-desc">Цена: по убыванию</option>
+                        <option value="area-desc">Площадь: по убыванию</option>
+                    </select>
+                </div>
+                <div class="view-toggle">
+                    <button class="vt-btn active" id="viewGrid" title="Сетка">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    </button>
+                    <button class="vt-btn" id="viewList" title="Список">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="4" width="18" height="3"/><rect x="3" y="10.5" width="18" height="3"/><rect x="3" y="17" width="18" height="3"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="catalog-results" id="catalogResults"></div>
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </div>
+</div>
+
+<!-- СТРАНИЦА: ИПОТЕКА -->
+<div id="page-mortgage" class="page">
+    <div class="container" style="padding: 60px 20px;">
+        <h1 class="page-title">Ипотечный калькулятор</h1>
+        <p class="page-subtitle">Рассчитайте ежемесячный платёж и подберите выгодные условия</p>
+        <div class="mortgage-layout">
+            <div class="mortgage-form-card">
+                <div class="mf-group">
+                    <label>Стоимость недвижимости</label>
+                    <div class="mf-input-wrap">
+                        <input type="range" id="propCost" min="1000000" max="100000000" step="500000" value="15000000">
+                        <output id="propCostVal">15 000 000 ₽</output>
+                    </div>
+                </div>
+                <div class="mf-group">
+                    <label>Первоначальный взнос</label>
+                    <div class="mf-input-wrap">
+                        <input type="range" id="downPayment" min="10" max="90" step="5" value="20">
+                        <output id="downPaymentVal">20% — 3 000 000 ₽</output>
+                    </div>
+                </div>
+                <div class="mf-group">
+                    <label>Процентная ставка, % годовых</label>
+                    <div class="mf-input-wrap">
+                        <input type="range" id="rate" min="4.9" max="25" step="0.1" value="10.5">
+                        <output id="rateVal">10.5%</output>
+                    </div>
+                </div>
+                <div class="mf-group">
+                    <label>Срок кредита, лет</label>
+                    <div class="mf-input-wrap">
+                        <input type="range" id="term" min="1" max="30" step="1" value="15">
+                        <output id="termVal">15 лет</output>
+                    </div>
+                </div>
+
+                <div class="bank-programs">
+                    <h4>Программы банков</h4>
+                    <div class="bank-list">
+                        <button class="bank-btn active" data-rate="10.5" data-bank="Сбербанк">Сбербанк 10.5%</button>
+                        <button class="bank-btn" data-rate="9.9" data-bank="ВТБ">ВТБ 9.9%</button>
+                        <button class="bank-btn" data-rate="11.2" data-bank="Альфа-Банк">Альфа 11.2%</button>
+                        <button class="bank-btn" data-rate="4.9" data-bank="Семейная">Семейная 4.9%</button>
+                        <button class="bank-btn" data-rate="8.0" data-bank="Льготная">Льготная 8%</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mortgage-result-card">
+                <div class="mr-main">
+                    <div class="mr-monthly">
+                        <span class="mr-label">Ежемесячный платёж</span>
+                        <span class="mr-value" id="monthlyPayment">–</span>
+                    </div>
+                    <div class="mr-details">
+                        <div class="mr-row"><span>Сумма кредита</span><strong id="loanAmount">–</strong></div>
+                        <div class="mr-row"><span>Переплата</span><strong id="overpayment">–</strong></div>
+                        <div class="mr-row"><span>Общая сумма выплат</span><strong id="totalPay">–</strong></div>
+                        <div class="mr-row"><span>Выбранный банк</span><strong id="selectedBank">Сбербанк</strong></div>
+                    </div>
+                    <div class="mr-doughnut-wrap">
+                        <canvas id="mortgageChart" width="200" height="200"></canvas>
+                        <div class="doughnut-legend">
+                            <div><span class="dot" style="background:#D93025"></span> Основной долг</div>
+                            <div><span class="dot" style="background:#FBBC04"></span> Переплата</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary w-100" id="applyMortgageBtn">Оставить заявку на ипотеку</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- СТРАНИЦА: РАЙОНЫ -->
+<div id="page-districts" class="page">
+    <div class="container" style="padding: 60px 20px;">
+        <h1 class="page-title">Районы Москвы и Санкт-Петербурга</h1>
+        <p class="page-subtitle">Наши эксперты подготовили обзор самых востребованных районов</p>
+        <div class="districts-page-grid" id="districtsPageGrid"></div>
+    </div>
+</div>
+
+<!-- СТРАНИЦА: О НАС -->
+<div id="page-about" class="page">
+    <div class="container" style="padding: 60px 20px;">
+        <h1 class="page-title">О компании ЭлитРиэлт</h1>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Компания <strong>ЭлитРиэлт</strong> работает на рынке элитной недвижимости Москвы и Санкт-Петербурга с 2012 года. За это время мы провели более 3 200 успешных сделок и заработали репутацию одного из самых надёжных агентств в России.</p>
+                <p>Наша команда — это 45 опытных риэлторов и юристов, каждый из которых специализируется на конкретном районе и типе недвижимости. Мы гарантируем юридическую чистоту каждой сделки.</p>
+                <h3>Наши преимущества</h3>
+                <ul class="about-list">
+                    <li>Полное юридическое сопровождение на всех этапах</li>
+                    <li>Организация ипотеки с банками-партнёрами</li>
+                    <li>Trade-in: обменяем вашу квартиру на новую</li>
+                    <li>Управление арендой и инвестиционными объектами</li>
+                    <li>Оценка рыночной стоимости объекта бесплатно</li>
+                </ul>
+            </div>
+            <div class="about-team">
+                <h3>Наша команда</h3>
+                <div class="team-grid">
+                    <div class="team-card"><div class="team-avatar" style="background:#D93025">ДМ</div><strong>Дмитрий Морозов</strong><span>Руководитель</span></div>
+                    <div class="team-card"><div class="team-avatar" style="background:#1a73e8">АС</div><strong>Анна Соколова</strong><span>Эксперт СПб</span></div>
+                    <div class="team-card"><div class="team-avatar" style="background:#34a853">ИП</div><strong>Игорь Петров</strong><span>Эксперт Москва</span></div>
+                    <div class="team-card"><div class="team-avatar" style="background:#fbbc04">МА</div><strong>Мария Антонова</strong><span>Юрист</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Контакты -->
+        <div class="contact-section" id="about-contacts">
+            <h2>Свяжитесь с нами</h2>
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <div class="ci-item">📍 <div><strong>Москва</strong><span>ул. Новый Арбат, 10, офис 301</span></div></div>
+                    <div class="ci-item">📍 <div><strong>Санкт-Петербург</strong><span>Невский пр., 50, офис 208</span></div></div>
+                    <div class="ci-item">📞 <div><strong>Телефон</strong><span>+7 (800) 555-35-35 (бесплатно)</span></div></div>
+                    <div class="ci-item">✉️ <div><strong>Email</strong><span>info@elitrielt.ru</span></div></div>
+                    <div class="ci-item">🕐 <div><strong>Режим работы</strong><span>Пн–Вс: 9:00 — 21:00</span></div></div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <h3>Оставить заявку</h3>
+                    <div class="cf-group">
+                        <input type="text" placeholder="Ваше имя *" required id="cfName">
+                    </div>
+                    <div class="cf-group">
+                        <input type="tel" placeholder="Телефон *" required id="cfPhone">
+                    </div>
+                    <div class="cf-group">
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="cf-group">
+                        <select>
+                            <option>Куплю квартиру</option>
+                            <option>Продам квартиру</option>
+                            <option>Сниму квартиру</option>
+                            <option>Сдам квартиру</option>
+                            <option>Инвестиции в недвижимость</option>
+                        </select>
+                    </div>
+                    <div class="cf-group">
+                        <textarea placeholder="Комментарий" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-100">Отправить заявку</button>
+                    <p class="cf-privacy">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
+                    <div class="cf-success" id="cfSuccess">✅ Заявка принята! Мы позвоним вам в течение 15 минут.</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: ДЕТАЛИ ОБЪЕКТА -->
+<div class="modal-overlay" id="propertyModal">
+    <div class="property-modal">
+        <button class="pm-close" id="pmClose">×</button>
+        <div class="pm-gallery" id="pmGallery"></div>
+        <div class="pm-body">
+            <div class="pm-main">
+                <div class="pm-badge" id="pmBadge"></div>
+                <h2 class="pm-title" id="pmTitle"></h2>
+                <div class="pm-address" id="pmAddress"></div>
+                <div class="pm-price-row">
+                    <span class="pm-price" id="pmPrice"></span>
+                    <button class="pm-fav-btn" id="pmFavBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        В избранное
+                    </button>
+                </div>
+                <div class="pm-specs" id="pmSpecs"></div>
+                <div class="pm-desc" id="pmDesc"></div>
+                <div class="pm-features" id="pmFeatures"></div>
+            </div>
+            <div class="pm-sidebar">
+                <div class="pm-agent-card">
+                    <div class="agent-avatar">АМ</div>
+                    <div><strong id="pmAgent">Агент</strong><br><span class="agent-rating">★★★★★ 4.9</span></div>
+                </div>
+                <button class="btn-primary w-100" id="pmCallBtn">📞 Позвонить</button>
+                <button class="btn-outline-red w-100 mt-10" id="pmBookBtn">Записаться на просмотр</button>
+                <div class="pm-mortgage-hint" id="pmMortgageHint"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: БРОНИРОВАНИЕ ПРОСМОТРА -->
+<div class="modal-overlay" id="viewingModal">
+    <div class="viewing-modal">
+        <button class="pm-close" id="vmClose">×</button>
+        <h3>Записаться на просмотр</h3>
+        <p class="vm-prop-name" id="vmPropName"></p>
+        <form id="viewingForm">
+            <div class="cf-group"><input type="text" placeholder="Ваше имя *" required></div>
+            <div class="cf-group"><input type="tel" placeholder="Телефон *" required></div>
+            <div class="cf-group">
+                <label style="font-size:13px;color:#666;margin-bottom:6px;display:block">Удобная дата</label>
+                <input type="date" required>
+            </div>
+            <div class="cf-group">
+                <label style="font-size:13px;color:#666;margin-bottom:6px;display:block">Удобное время</label>
+                <select>
+                    <option>10:00 — 11:00</option>
+                    <option>11:00 — 12:00</option>
+                    <option>12:00 — 13:00</option>
+                    <option>14:00 — 15:00</option>
+                    <option>15:00 — 16:00</option>
+                    <option>16:00 — 17:00</option>
+                    <option>17:00 — 18:00</option>
+                    <option>18:00 — 19:00</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary w-100">Записаться</button>
+            <div class="cf-success" id="vmSuccess">✅ Отлично! Ожидайте подтверждения от агента.</div>
+        </form>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: ИПОТЕЧНАЯ ЗАЯВКА -->
+<div class="modal-overlay" id="mortgageModal">
+    <div class="viewing-modal">
+        <button class="pm-close" id="mmClose">×</button>
+        <h3>Заявка на ипотеку</h3>
+        <p style="color:#666;font-size:14px;margin-bottom:20px">Наш эксперт свяжется с вами и поможет выбрать лучшую программу</p>
+        <form id="mortgageForm">
+            <div class="cf-group"><input type="text" placeholder="Имя и Фамилия *" required></div>
+            <div class="cf-group"><input type="tel" placeholder="Телефон *" required></div>
+            <div class="cf-group"><input type="email" placeholder="Email"></div>
+            <div class="cf-group">
+                <select>
+                    <option>Квартира в новостройке</option>
+                    <option>Вторичный рынок</option>
+                    <option>Дом/Загородная</option>
+                    <option>Рефинансирование</option>
+                </select>
+            </div>
+            <div class="cf-group"><input type="number" placeholder="Примерная стоимость объекта, ₽"></div>
+            <button type="submit" class="btn-primary w-100">Подать заявку</button>
+            <div class="cf-success" id="mmSuccess">✅ Заявка принята! Мы позвоним вам в течение 30 минут.</div>
+        </form>
+    </div>
+</div>
+
+<!-- УВЕДОМЛЕНИЕ -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-col">
+            <div class="logo" style="margin-bottom:12px">ЭлитРиэлт</div>
+            <p>Элитная недвижимость Москвы и Санкт-Петербурга</p>
+            <p>© 2026 ЭлитРиэлт. Портфолио-проект.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Покупателям</h4>
+            <a href="#">Каталог квартир</a>
+            <a href="#">Новостройки</a>
+            <a href="#">Ипотечный калькулятор</a>
+            <a href="#">Trade-in</a>
+        </div>
+        <div class="footer-col">
+            <h4>Продавцам</h4>
+            <a href="#">Оценка объекта</a>
+            <a href="#">Разместить объявление</a>
+            <a href="#">Рыночная аналитика</a>
+        </div>
+        <div class="footer-col">
+            <h4>Контакты</h4>
+            <a href="tel:+78005553535">+7 (800) 555-35-35</a>
+            <a href="mailto:info@elitrielt.ru">info@elitrielt.ru</a>
+            <a href="#">Москва: Новый Арбат, 10</a>
+            <a href="#">СПб: Невский пр., 50</a>
+        </div>
+    </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
